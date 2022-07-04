@@ -3,14 +3,13 @@ package com.project.controller;
 import com.project.model.Coder;
 import com.project.repository.CoderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class CoderController {
 
     @Autowired
@@ -25,10 +24,19 @@ public class CoderController {
 
     // This endpoint is mainly called by the form in main.jsp.
     @GetMapping("/addCoder")
-    public String addProgrammer(Coder coder) {
+    public String addCoder(Coder coder) {
 
         repository.save(coder);
         return "main.jsp";
+
+    }
+
+    // This endpoint is mainly called by the form in main.jsp.
+    @PostMapping("/addCoder")
+    public Coder addCoderPOST(Coder coder) {
+
+        repository.save(coder);
+        return coder;
 
     }
 
