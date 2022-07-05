@@ -31,9 +31,20 @@ public class CoderController {
 
     }
 
-    // This endpoint is mainly called by the form in main.jsp.
-    @PostMapping("/addCoder")
-    public Coder addCoderPOST(Coder coder) {
+    // You can test this endpoint through Postman.
+    // Use "form-data" tab with the necessary variable names as keys.
+    @PostMapping("/addCoderForm")
+    public Coder addCoderForm(Coder coder) {
+
+        repository.save(coder);
+        return coder;
+
+    }
+
+    // You can test this endpoint through Postman.
+    // Use "raw" tab with the necessary data in a Json format.
+    @PostMapping("/addCoderJson")
+    public Coder addCoderJson(@RequestBody Coder coder) {
 
         repository.save(coder);
         return coder;
