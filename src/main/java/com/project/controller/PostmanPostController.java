@@ -24,8 +24,18 @@ public class PostmanPostController {
     }
 
     // You can test this endpoint through Postman.
-    // Use "raw" tab with the necessary data in a Json format.
-    @PostMapping("/addCoderJson")
+    // Use "raw" tab with the necessary data in a JSON format.
+    @PostMapping("/addCoderDefault")
+    public Coder addCoderDefault(@RequestBody Coder coder) {
+
+        repository.save(coder);
+        return coder;
+
+    }
+
+    // You can test this endpoint through Postman.
+    // Use "raw" tab with the necessary data in a JSON format.
+    @PostMapping(path = "/addCoderJSON", consumes = "application/json")
     public Coder addCoderJson(@RequestBody Coder coder) {
 
         repository.save(coder);
@@ -35,7 +45,7 @@ public class PostmanPostController {
 
     // You can test this endpoint through Postman.
     // Use "raw" tab with the necessary data in an XML format.
-    @PostMapping(path = "/addCoderXml", consumes = "application/xml")
+    @PostMapping(path = "/addCoderXML", consumes = "application/xml")
     public Coder addCoderXml(@RequestBody Coder coder) {
 
         repository.save(coder);
