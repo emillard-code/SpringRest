@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+// @RestController makes it so that @ResponseBody is inherent in every controller method.
+// This means that everything is returned as a JSON by default.
+// (Hence returning the String of a HTML file name will not work)
 @RestController
 public class HomeController {
 
@@ -13,18 +16,21 @@ public class HomeController {
     CoderRepository repository;
 
     @GetMapping("/")
-    public String home() {
+    public ModelAndView home() {
 
-        return "main.jsp";
+        ModelAndView mv = new ModelAndView("main.jsp");
+        return mv;
 
     }
 
     // This endpoint is mainly called by the form in main.jsp.
+    // Trying to use @RequestParam on an object will not work here.
     @GetMapping("/addCoder")
-    public String addCoder(Coder coder) {
+    public ModelAndView addCoder(Coder coder) {
 
+        ModelAndView mv = new ModelAndView("main.jsp");
         repository.save(coder);
-        return "main.jsp";
+        return mv;
 
     }
 
