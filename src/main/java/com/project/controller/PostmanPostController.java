@@ -25,7 +25,9 @@ public class PostmanPostController {
 
     // You can test this endpoint through Postman.
     // Use "raw" tab with the necessary data in a JSON format.
-    @PostMapping("/addCoderDefault")
+    // @RequestBody ensures that this endpoint can accept JSON format.
+    // (But can no longer accept form format)
+    @PostMapping("/addCoder")
     public Coder addCoderDefault(@RequestBody Coder coder) {
 
         repository.save(coder);
@@ -35,6 +37,7 @@ public class PostmanPostController {
 
     // You can test this endpoint through Postman.
     // Use "raw" tab with the necessary data in a JSON format.
+    // consumes = "application/json" ensures that this endpoint only accepts JSON format.
     @PostMapping(path = "/addCoderJSON", consumes = "application/json")
     public Coder addCoderJson(@RequestBody Coder coder) {
 
@@ -45,6 +48,7 @@ public class PostmanPostController {
 
     // You can test this endpoint through Postman.
     // Use "raw" tab with the necessary data in an XML format.
+    // consumes = "application/xml" ensures that this endpoint only accepts XML format.
     @PostMapping(path = "/addCoderXML", consumes = "application/xml")
     public Coder addCoderXml(@RequestBody Coder coder) {
 

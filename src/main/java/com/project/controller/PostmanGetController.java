@@ -17,8 +17,8 @@ public class PostmanGetController {
     CoderRepository repository;
 
     // This automatically returns the object in JSON format.
-    @GetMapping("/coder/{id}")
-    public Optional<Coder> coderById(@PathVariable("id") int id) {
+    @GetMapping("/getCoder/{id}")
+    public Optional<Coder> getCoderById(@PathVariable("id") int id) {
 
         return repository.findById(id);
 
