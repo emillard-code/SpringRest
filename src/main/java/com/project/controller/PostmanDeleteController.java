@@ -15,13 +15,16 @@ public class PostmanDeleteController {
     @Autowired
     CoderRepository repository;
 
+    // Two deleteCoder endpoints have been added to showcase
+    // slightly different methods to achieve the same purpose.
+
     @DeleteMapping("/deleteCoder1/{id}")
-    public Coder deleteCoderById1(@PathVariable("id") int id) {
+    public Optional<Coder> deleteCoderById1(@PathVariable("id") int id) {
 
         Optional<Coder> coder = repository.findById(id);
         repository.deleteById(id);
 
-        return new Coder();
+        return coder;
 
     }
 
@@ -34,6 +37,8 @@ public class PostmanDeleteController {
         Coder coder = repository.getOne(id);
         repository.delete(coder);
 
+        // When using .getOne(), returning the Coder object
+        // after it's been deleted will result in a 500 error.
         return new Coder();
 
     }
