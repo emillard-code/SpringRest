@@ -44,6 +44,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Add this dependency for .jsp file support. -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper</artifactId>
