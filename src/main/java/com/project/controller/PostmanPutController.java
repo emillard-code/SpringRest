@@ -7,17 +7,34 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
+
 @RestController
 public class PostmanPutController {
 
     @Autowired
     CoderRepository repository;
 
-    @PutMapping("/updateCoder")
-    public Coder updateCoder(@RequestBody Coder coder) {
+    @PutMapping("/putCoder")
+    public Coder putCoder(@RequestBody Coder coder) {
 
         repository.save(coder);
         return coder;
+
+    }
+
+    @PutMapping("/updateCoder")
+    public Coder updateCoder(@RequestBody Coder coder) {
+
+        Optional<Coder> optionalCoder = repository.findById(coder.getId());
+
+        if (optionalCoder.isPresent()) {
+            repository.save(coder);
+            return coder;
+        } else {
+            return new Coder();
+        }
 
     }
 
